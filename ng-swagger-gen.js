@@ -174,9 +174,19 @@ function doGenerate(swaggerContent, options) {
       servicesOutput + "/" + service.serviceFile + ".ts");
 
     if (service.stubs) {
+
       for (var i in service.serviceOperations) {
         var operation = service.serviceOperations[i];
-        generate(templates.stub, operation,
+
+
+        var model = modelsArray.find(function(m) {
+          return m.modelName === operation.operationResponses.resultType;
+        });
+
+        generate(templates.stub, {
+            operation: operation,
+            stub: model
+          },
           stubsOutput + "/" + operation.operationName + "Stub.ts");
       }
     }

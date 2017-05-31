@@ -1,35 +1,7 @@
 /* tslint:disable */
 
-export const {{operationName}}Stub = {
-  result: [{
-    text: "software developer",
-    score: "867"
-  }, {
-      text: "developer",
-      score: "583"
-    }, {
-      text: "business developer",
-      score: "494"
-    }, {
-      text: "web developer",
-      score: "419"
-    }, {
-      text: "application developer",
-      score: "244"
-    }, {
-      text: "product developer",
-      score: "232"
-    }, {
-      text: "senior developer",
-      score: "179"
-    }, {
-      text: "senior software developer",
-      score: "133"
-    }, {
-      text: "lead developer",
-      score: "101"
-    }, {
-      text: "java developer",
-      score: "93"
-    }]
+export const {{operation.operationName}}Stub = {
+  {{#stub.modelProperties}}
+    {{propertyName}}: '{{propertyType}}',
+  {{/stub.modelProperties}}
 }
