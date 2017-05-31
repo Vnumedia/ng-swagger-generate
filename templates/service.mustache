@@ -10,7 +10,8 @@ import { ApiResponse as _ApiResponse_ } from '../api-response';
 {{#serviceDependencies}}import { {{modelName}} } from '../models/{{modelFile}}';
 {{/serviceDependencies}}
 
-{{#stubs}}{{#serviceOperations}}import { {{modelName}} } from '../stubs/{{operationName}}Stub';{{/serviceOperations}}{{/stubs}}
+{{#stubs}}{{#serviceOperations}}import { {{operationName}}Stub } from '../stubs/{{operationName}}Stub';
+{{/serviceOperations}}{{/stubs}}
 
 {{{serviceComments}}}
 @Injectable()

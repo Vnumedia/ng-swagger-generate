@@ -14,6 +14,10 @@
       "description": "The location of the swagger descriptor in JSON format.\nMay be either a local file or URL.",
       "type": "string"
     },
+    "stubs": {
+      "description": "Stubs mode, will return stubs instead of making http calls",
+      "type": "boolean"
+    },
     "output": {
       "description": "Where generated files will be written to. Defaults to 'src/app/api'.",
       "type": "string"
