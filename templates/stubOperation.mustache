@@ -5,7 +5,7 @@
   }}{{#operationParameters}}{{paramName}}{{^paramRequired}}?{{/paramRequired}}: {{paramType
   }}{{^paramIsLast}},
     {{/paramIsLast}}{{/operationParameters}}{{/operationParamsClass
-    }}) {
-
-    return {{operationName}}Stub as {{operationResultType}};
+    }}): {{operationResultType}} {
+    {{^operationIsVoid}}return {{operationName}}Stub as {{operationResultType}};{{/operationIsVoid
+    }}
   }
