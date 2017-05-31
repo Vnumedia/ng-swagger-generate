@@ -174,20 +174,15 @@ function doGenerate(swaggerContent, options) {
       servicesOutput + "/" + service.serviceFile + ".ts");
 
     if (service.stubs) {
+      var source = "stubs";
+      if (fs.lstatSync(source).isDirectory()) {
+        files = fs.readdirSync(source);
+        files.forEach(function(file) {
+          var curSource = path.join(source, file);
+          var targetFile = path.join(stubsOutput, file);
 
-      for (var i in service.serviceOperations) {
-        var operation = service.serviceOperations[i];
-
-
-        var model = modelsArray.find(function(m) {
-          return m.modelName === operation.operationResponses.resultType;
+          fs.writeFileSync(targetFile, fs.readFileSync(curSource));
         });
-
-        generate(templates.stub, {
-            operation: operation,
-            stub: model
-          },
-          stubsOutput + "/" + operation.operationName + "Stub.ts");
       }
     }
   }
