@@ -110,8 +110,10 @@ function doGenerate(swaggerContent, options) {
   // Prepare the output folder
   const modelsOutput = path.join(output, '/models');
   const servicesOutput = path.join(output, '/services');
+  const stubsOutput = path.join(output, '/stubs');
   mkdirs(modelsOutput);
   mkdirs(servicesOutput);
+  mkdirs(stubsOutput);
 
   var removeStaleFiles = options.removeStaleFiles !== false;
 
@@ -170,6 +172,14 @@ function doGenerate(swaggerContent, options) {
     servicesArray.push(service);
     generate(templates.service, service,
       servicesOutput + "/" + service.serviceFile + ".ts");
+
+    if (service.stubs) {
+      for (var i in service.serviceOperations) {
+        var operation = service.serviceOperations[i];
+        generate(templates.stub, operation,
+          stubsOutput + "/" + operation.operationName + "Stub.ts");
+      }
+    }
   }
   if (servicesArray.length > 0) {
     servicesArray[servicesArray.length - 1].serviceIsLast = true;
