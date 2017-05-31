@@ -1,0 +1,11 @@
+
+{{{operationComments}}}
+  {{operationName}}({{#operationParamsClass
+  }}params: {{serviceClass}}.{{operationParamsClass}}{{/operationParamsClass}}{{^operationParamsClass
+  }}{{#operationParameters}}{{paramName}}{{^paramRequired}}?{{/paramRequired}}: {{paramType
+  }}{{^paramIsLast}},
+    {{/paramIsLast}}{{/operationParameters}}{{/operationParamsClass
+    }}) {
+
+    return {{operationName}}Stub as {{operationResultType}};
+  }
