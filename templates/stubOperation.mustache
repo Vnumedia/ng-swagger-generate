@@ -5,7 +5,7 @@
   }}{{#operationParameters}}{{paramName}}{{^paramRequired}}?{{/paramRequired}}: {{paramType
   }}{{^paramIsLast}},
     {{/paramIsLast}}{{/operationParameters}}{{/operationParamsClass
-    }}): {{operationResultType}} {
-    {{^operationIsVoid}}return {{operationName}}Stub as {{operationResultType}};{{/operationIsVoid
+    }}): {{#operationIsVoid}}{{operationResultType}}{{/operationIsVoid}}{{^operationIsVoid}}Observable <{{operationResultType}}>{{/operationIsVoid}} {
+    {{^operationIsVoid}}return Observable.of({{operationName}}Stub as {{operationResultType}});{{/operationIsVoid
     }}
   }
