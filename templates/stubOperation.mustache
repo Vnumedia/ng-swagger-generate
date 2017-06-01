@@ -6,6 +6,14 @@
   }}{{^paramIsLast}},
     {{/paramIsLast}}{{/operationParameters}}{{/operationParamsClass
     }}): {{#operationIsVoid}}{{operationResultType}}{{/operationIsVoid}}{{^operationIsVoid}}Observable <{{operationResultType}}>{{/operationIsVoid}} {
-    {{^operationIsVoid}}return Observable.of({{operationName}}Stub as {{operationResultType}});{{/operationIsVoid
+      {{^operationIsVoid}}
+      let responseKey = 'default';
+      {{^operationParamsClass}}let customKey = {{#operationParameters}}{{paramName}}{{^paramIsLast}}+'_'+{{/paramIsLast}}{{/operationParameters}}{{^operationParameters}}''{{/operationParameters}};
+
+      if (customKey !== '' && {{operationName}}Stub[customKey]) {
+        responseKey = customKey;
+      }
+      {{/operationParamsClass}}
+      return Observable.of({{operationName}}Stub[responseKey] as {{operationResultType}});{{/operationIsVoid
     }}
   }
