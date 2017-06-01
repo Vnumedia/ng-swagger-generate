@@ -236,7 +236,7 @@ function doGenerate(swaggerContent, options) {
     var schemes = swagger.schemes || [];
     var scheme = schemes.length == 0 ? 'http' : schemes[0];
     var host = (swagger.host || "localhost");
-    var basePath = (swagger.basePath || "/");
+    var basePath = (swagger.basePath || "");
     var rootUrl = scheme + "://" + host + basePath;
     var context = {
       "rootUrl": rootUrl,
