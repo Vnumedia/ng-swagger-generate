@@ -2,7 +2,7 @@
   "name": "ng-swagger-gen",
   "version": "0.5.1",
   "license": "MIT",
-  "author": "Cyclos development team",
+  "author": "Vnumedia",
   "description": "A Swagger 2.0 codegen for Angular 2+",
   "private": false,
   "keywords": [
@@ -12,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cyclosproject/ng-swagger-gen.git"
+    "url": "git+https://github.com/Vnumedia/ng-swagger-generate-stub"
   },
   "dependencies": {
     "mustache": "^2.0.0"
