@@ -174,6 +174,7 @@ function doGenerate(swaggerContent, options) {
       servicesOutput + "/" + service.serviceFile + ".ts");
 
     if (service.stubs) {
+      console.info("--- Stubs module enabled ---");
       var source = "stubs";
       if (fs.lstatSync(source).isDirectory()) {
         files = fs.readdirSync(source);
