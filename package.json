@@ -1,5 +1,5 @@
 {
-  "name": "ng-swagger-gen",
+  "name": "ng-swagger-generate-stub",
   "version": "0.5.1",
   "license": "MIT",
   "author": "Vnumedia",
@@ -12,12 +12,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Vnumedia/ng-swagger-generate-stub"
+    "url": "git+https://github.com/Vnumedia/ng-swagger-generate-stuberate-stub"
   },
   "dependencies": {
     "mustache": "^2.0.0"
   },
   "bin": {
-    "ng-swagger-gen": "./ng-swagger-gen"
+    "ng-swagger-generate-stub": "./ng-swagger-generate-stub"
   }
 }
