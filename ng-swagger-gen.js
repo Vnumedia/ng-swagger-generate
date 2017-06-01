@@ -182,6 +182,7 @@ function doGenerate(swaggerContent, options) {
           var targetFile = path.join(stubsOutput, file);
 
           fs.writeFileSync(targetFile, fs.readFileSync(curSource));
+          console.info("Copied stub  " + targetFile);
         });
       }
     }
