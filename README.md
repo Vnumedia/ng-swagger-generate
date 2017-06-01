@@ -1,30 +1,13 @@
 nd-swagger-gen: A Swagger 2.0 codegen for Angular 2+
 ---
 
-originally forked from https://github.com/cyclosproject/ng-swagger-generate-stub
+originally forked from https://github.com/cyclosproject/ng-swagger-gen
 
 This project is a NPM module that takes a [Swagger 2.0](http://swagger.io/)
 JSON [specification](http://swagger.io/specification/) and generates services
 and model classes for an Angular 2+ project.
 
 This generator may not cover all usages of the Swagger 2.0 specifications.
-
-The design principles are:
-
-- It must be easy to use;
-- It should provide access to the original response, so, for example, headers
-  can be read. But also it should provide easy access to the result;
-- It should generate code which follows the concepts of an Angular 2+
-  application, such as Modules, Injectables, etc;
-- The generated model should handle correctly inheritance and enumerations;
-- An Angular Module (@NgModule) is generated, which exports all services;
-- One service is generated per Swagger tag;
-- It should be possible to choose a subset of tags from which to generate
-  services;
-- It should generate only the models actually used by the generated service;
-- The configuration of the root URL for the API, as well as an error handler
-  and authentication setup of the request (header with API token, basic auth,
-  etc) are handled in a generated class called `ApiConfiguration`.
 
 Here are a few notes:
 
@@ -38,26 +21,22 @@ Here are a few notes:
 - Operations that don't declare an id have an id generated. However, it is
   recommended that all operations define an id;
 - File uploads are not supported;
-- Each service returns `Promise`s. Direct access to `Observable`s is not
-  implemented.
-- Probably many more.
 
 ## How to use it:
 In your project, run:
 ```bash
 cd <your_angular2+_app_dir>
 npm install ng-swagger-generate-stub --save-dev
-node_modules/.bin/ng-swagger-generate-stub <path_to_swagger_json> [output_dir]
 ```
-Where:
 
-- `path_to_swagger` is either a relative path to the Swagger JSON file or an
-  URL.
-- `output_dir` is the directory where the generated code will be outputted. It
-  is recommended that this directory is ignored on GIT (or whatever source
-  control software you are using), for example, by adding its name to
-  `.gitignore`. The default output directory if nothing is specified is
-  `src/app/api`.
+Configure `ng-swagger-generate-stub.json` (see _Using a configuration file_)
+
+```
+node_modules/.bin/ng-swagger-generate-stub
+```
+Params:
+
+- `--stubs` will use stubs client. Stubs will be copied from ``/root/stubs` directory
 
 The folder `src/app/api` (or your custom folder) will contain the following
 structure:
@@ -129,8 +108,7 @@ file, because it grants greater control over the generation.
 If you have installed and saved the `ng-swagger-generate-stub` module in your node
 project, you can use a JSON schema in your configuration file pointing to
 `./node_modules/ng-swagger-generate-stub/ng-swagger-generate-stub-schema.json`.
-It is also possible to use the online version at
-`https://github.com/cyclosproject/ng-swagger-generate-stub/blob/master/ng-swagger-generate-stub-schema.json`.
+It is also possible to use the online version.
 
 The supported properties in the JSON file are:
 
@@ -191,7 +169,7 @@ following in your `package.json`:
   "scripts": {
     "ng": "ng",|
     "ng-swagger-generate-stub": "ng-swagger-generate-stub",|
-    "start": "ng-swagger-generate-stub && ng serve",
+    "start": "ng-swagger-generate-stub --stubs && ng serve",
     "build": "ng-swagger-generate-stub && ng build -prod",
     "lint": "ng lint"
   },
@@ -207,19 +185,3 @@ as an operation parameter. Hence, `ng-swagger-generate-stub` supports the vendor
 extension `x-type` in operations, whose value could either be a model name
 representing an enum or `Array<EnumName>` or `List<EnumName>` (both are
 equivallents) to use an array of models.
-
-## Who uses this project
-This project was developed by the [Cyclos](http://cyclos.org) development team,
-and, in fact, the [Cyclos REST API](https://demo.cyclos.org/api) is the primary
-test case for generated classes.
-
-That doesn't mean that the generator works only for the Cyclos API. For
-instance, the following commands will generate an API client for
-[Swagger's PetStore](http://petstore.swagger.io) example, assuming
-[Angular CLI](https://cli.angular.io/) is installed:
-```bash
-ng new petstore
-cd petstore
-npm install --save-dev ng-swagger-generate-stub
-node_modules/.bin/ng-swagger-generate-stub http://petstore.swagger.io/v2/swagger.json
-```
