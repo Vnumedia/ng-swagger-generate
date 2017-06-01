@@ -1,6 +1,8 @@
 nd-swagger-gen: A Swagger 2.0 codegen for Angular 2+
 ---
 
+originally forked from https://github.com/cyclosproject/ng-swagger-gen
+
 This project is a NPM module that takes a [Swagger 2.0](http://swagger.io/)
 JSON [specification](http://swagger.io/specification/) and generates services
 and model classes for an Angular 2+ project.
@@ -86,7 +88,7 @@ The files are:
   Enumerations are also correctly generated;
 - **api/models.ts**: An index script which exports all model classes. It is
   used to make it easier for application classes to import models, so they can
-  use `import { Model1, Model2 } from 'api/models'` instead of 
+  use `import { Model1, Model2 } from 'api/models'` instead of
   `import { Model1 } from 'api/models/model1'` and
   `import { Model2 } from 'api/models/model2'`;
 - **api/services/tag*n*.service.ts**: One file per Swagger tag is generated
@@ -127,7 +129,7 @@ file, because it grants greater control over the generation.
 If you have installed and saved the `ng-swagger-gen` module in your node
 project, you can use a JSON schema in your configuration file pointing to
 `./node_modules/ng-swagger-gen/ng-swagger-gen-schema.json`.
-It is also possible to use the online version at 
+It is also possible to use the online version at
 `https://github.com/cyclosproject/ng-swagger-gen/blob/master/ng-swagger-gen-schema.json`.
 
 The supported properties in the JSON file are:
@@ -160,7 +162,7 @@ tags to generate, and chose not to generate the ApiModule class:
 ```json
 {
   "$schema": "./node_modules/ng-swagger-gen/ng-swagger-gen-schema.json",
-  "swagger": "my-swagger.json", 
+  "swagger": "my-swagger.json",
   "includeTags": [
     "Blogs",
     "Comments",
