@@ -27,4 +27,7 @@ if (options.stubs === undefined) {
 }
 
 var ngSwaggerGen = require("./ng-swagger-generate-stub.js");
-ngSwaggerGen(options);
+for (var i in options.sources) {
+  options.swagger = options.sources[i];
+  ngSwaggerGen(options);
+}

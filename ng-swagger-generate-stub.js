@@ -71,7 +71,7 @@ function doGenerate(swaggerContent, options) {
   }
 
   var templates = options.templates;
-  var output = options.output || 'src/app/api';
+  var output = options.output || 'src/app/api/';
 
   var swagger = JSON.parse(swaggerContent);
   if (typeof swagger != 'object') {
@@ -83,6 +83,7 @@ function doGenerate(swaggerContent, options) {
       swagger.swagger);
     process.exit(1);
   }
+  options.id = swagger.info.title.replace(' ', '');
   swagger.paths = swagger.paths || {};
   swagger.models = swagger.models || [];
   var models = processModels(swagger, options);
@@ -108,6 +109,7 @@ function doGenerate(swaggerContent, options) {
   });
 
   // Prepare the output folder
+  output += options.id;
   const modelsOutput = path.join(output, '/models');
   const servicesOutput = path.join(output, '/services');
   const stubsOutput = path.join(output, '/stubs');
@@ -224,7 +226,8 @@ function doGenerate(swaggerContent, options) {
   var apiModuleFile = output + "/api.module.ts";
   if (options.apiModule !== false) {
     generate(templates.apiModule, {
-        "services": servicesArray
+        "services": servicesArray,
+        "moduleName": options.id
       },
       apiModuleFile);
   } else if (removeStaleFiles) {
@@ -768,7 +771,7 @@ function toOperationId(method, url) {
  */
 function tagName(tag, options) {
   if (tag == null || tag === '') {
-    tag = options.defaultTag || "Api";
+    tag = options.defaultTag || options.id;
   }
   return tag.charAt(0).toUpperCase() + (tag.length == 1 ? "" : tag.substr(1));
 }
