@@ -177,8 +177,8 @@ function doGenerate(swaggerContent, options) {
 
     if (service.stubs) {
       console.info("--- Stubs module enabled ---");
-      var source = "stubs";
-      if (fs.lstatSync(source).isDirectory()) {
+      var source = "stubs/" + options.id;
+      if (fs.existsSync(source) && fs.lstatSync(source).isDirectory()) {
         files = fs.readdirSync(source);
         files.forEach(function(file) {
           var curSource = path.join(source, file);
