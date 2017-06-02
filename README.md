@@ -1,11 +1,11 @@
-nd-swagger-gen: A Swagger 2.0 codegen for Angular 2+
+nd-swagger-generate-stubs: A Swagger 2.0 codegen for Angular 2+
 ---
 
 originally forked from https://github.com/cyclosproject/ng-swagger-gen
 
 This project is a NPM module that takes a [Swagger 2.0](http://swagger.io/)
-JSON [specification](http://swagger.io/specification/) and generates services
-and model classes for an Angular 2+ project.
+JSON [specification](http://swagger.io/specification/) and generates two differen clients: 1: HTTPS: services
+and model classes for an Angular 2+ project. 2. MOCK: http client + returning stubs instead of making real http calls.
 
 This generator may not cover all usages of the Swagger 2.0 specifications.
 
@@ -36,7 +36,7 @@ node_modules/.bin/ng-swagger-generate-stub
 ```
 Params:
 
-- `--stubs` will use stubs client. Stubs will be copied from ``/root/stubs` directory
+- `--stubs` will use stubs client. Stubs will be copied from '/root/stubs` directory
 
 The folder `src/app/api` (or your custom folder) will contain the following
 structure:
@@ -54,6 +54,10 @@ project_root
          |  +- tag1.service.ts
          |  +- ...
          |  +- tagn.service.ts
+         +- stubs
+         |  +- OperationName1.stub.ts
+         |  +- ...
+         |  +- OperationNameN.stub.ts
          +- api-configuration.ts
          +- api-response.ts
          +- api.module.ts

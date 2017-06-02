@@ -11,7 +11,7 @@ import { ApiResponse as _ApiResponse_ } from '../api-response';
 {{#serviceDependencies}}import { {{modelName}} } from '../models/{{modelFile}}';
 {{/serviceDependencies}}
 
-{{#stubs}}{{#serviceOperations}}import { {{operationName}}Stub } from '../stubs/{{operationName}}Stub';
+{{#stubs}}{{#serviceOperations}}import { {{operationName}}Stub } from '../stubs/{{operationName}}.stub';
 {{/serviceOperations}}{{/stubs}}
 
 {{{serviceComments}}}
