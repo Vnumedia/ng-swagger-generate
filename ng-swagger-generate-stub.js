@@ -171,6 +171,7 @@ function doGenerate(swaggerContent, options) {
     var service = services[serviceName];
     service.generalErrorHandler = options.errorHandler !== false;
     service.stubs = options.stubs !== false;
+    service.moduleName = options.id;
     servicesArray.push(service);
     generate(templates.service, service,
       servicesOutput + "/" + service.serviceFile + ".ts");
@@ -243,6 +244,7 @@ function doGenerate(swaggerContent, options) {
     var rootUrl = scheme + "://" + host + basePath;
     var context = {
       "rootUrl": rootUrl,
+      "moduleName": options.id,
       "generalErrorHandler": options.errorHandler !== false
     };
     generate(templates.apiConfiguration, context,
@@ -870,7 +872,8 @@ function processServices(swagger, models, options) {
         "operationComments": toComments(docString, 1),
         "operationResultType": resultType,
         "operationParameters": operationParameters,
-        "operationResponses": operationResponses
+        "operationResponses": operationResponses,
+        "apiConfiguration": options.id + 'Configuration'
       }
       operation.operationIsVoid = resultType === 'void';
       operation.operationIsString = resultType === 'string';

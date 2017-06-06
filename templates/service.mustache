@@ -4,7 +4,7 @@ import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angul
 
 import { Observable } from 'rxjs/Rx';
 
-import { ApiConfiguration } from '../api-configuration';
+import { {{moduleName}}Configuration } from '../api-configuration';
 import { ApiResponse as _ApiResponse_ } from '../api-response';
 
 {{#serviceDependencies}}import { {{modelName}} } from '../models/{{modelFile}}';

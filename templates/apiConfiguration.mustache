@@ -1,6 +1,6 @@
 import { RequestOptions } from '@angular/http';
 
-export class ApiConfiguration {
+export class {{moduleName}}Configuration {
   public static rootUrl = '{{{rootUrl}}}';{{#generalErrorHandler}}
   public static handleError: (error: any) => void = (error) => alert(error);{{/generalErrorHandler}}
   public static prepareRequestOptions: (options: RequestOptions) => void = (req) => {};
