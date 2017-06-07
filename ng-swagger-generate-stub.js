@@ -84,6 +84,7 @@ function doGenerate(swaggerContent, options) {
     process.exit(1);
   }
   options.id = swagger.info.title.replace(' ', '');
+  console.info("--- Generating files for " + options.id + " --- ");
   swagger.paths = swagger.paths || {};
   swagger.models = swagger.models || [];
   var models = processModels(swagger, options);
@@ -115,7 +116,9 @@ function doGenerate(swaggerContent, options) {
   const stubsOutput = path.join(output, '/stubs');
   mkdirs(modelsOutput);
   mkdirs(servicesOutput);
-  mkdirs(stubsOutput);
+
+  deleteFolderRecursive(stubsOutput);
+
 
   var removeStaleFiles = options.removeStaleFiles !== false;
 
@@ -177,18 +180,11 @@ function doGenerate(swaggerContent, options) {
       servicesOutput + "/" + service.serviceFile + ".ts");
 
     if (service.stubs) {
-      console.info("--- Stubs module enabled ---");
-      var source = "stubs/" + options.id;
-      if (fs.existsSync(source) && fs.lstatSync(source).isDirectory()) {
-        files = fs.readdirSync(source);
-        files.forEach(function(file) {
-          var curSource = path.join(source, file);
-          var targetFile = path.join(stubsOutput, file);
+      console.info(">Stubs module enabled");
 
-          fs.writeFileSync(targetFile, fs.readFileSync(curSource));
-          console.info("Copied stub  " + targetFile);
-        });
-      }
+      mkdirs(stubsOutput);
+
+      copyStubs(options, stubsOutput);
     }
   }
   if (servicesArray.length > 0) {
@@ -256,6 +252,36 @@ function doGenerate(swaggerContent, options) {
     generate(templates.apiResponse, {}, output + "/api-response.ts");
   }
 }
+
+function copyStubs(options, stubsOutput) {
+  var source = "stubs/" + options.id;
+  if (fs.existsSync(source) && fs.lstatSync(source).isDirectory()) {
+    var files = fs.readdirSync(source);
+    files.forEach(function(file) {
+      var curSource = path.join(source, file);
+      var targetFile = path.join(stubsOutput, file);
+
+      fs.writeFileSync(targetFile, fs.readFileSync(curSource));
+      console.info("Copy stub " + targetFile);
+    });
+  } else {
+    console.info("No stubs found " + source);
+  }
+}
+
+function deleteFolderRecursive(path) {
+  if (fs.existsSync(path)) {
+    fs.readdirSync(path).forEach(function(file, index) {
+      var curPath = path + "/" + file;
+      if (fs.lstatSync(curPath).isDirectory()) { // recurse
+        deleteFolderRecursive(curPath);
+      } else { // delete file
+        fs.unlinkSync(curPath);
+      }
+    });
+    fs.rmdirSync(path);
+  }
+};
 
 /**
  * Applies a filter over the given services, keeping only the specific tags.
