@@ -239,7 +239,8 @@ function doGenerate(swaggerContent, options) {
     var rootUrl = scheme + "://" + host + basePath;
     var context = {
       "rootUrl": rootUrl,
-      "moduleName": options.id "generalErrorHandler": options.errorHandler !== false
+      "moduleName": options.id,
+      "generalErrorHandler": options.errorHandler !== false
     };
     generate(templates.apiConfiguration, context,
       output + "/api-configuration.ts");
