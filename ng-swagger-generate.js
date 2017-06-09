@@ -85,7 +85,7 @@ function doGenerate(swaggerContent, options) {
   }
   options.id = swagger.info.title.replace(' ', '');
   console.info("--- Generating files for " + options.id + " --- ");
-  output += options.id;
+  output += '/' + options.id;
   const stubsOutput = path.join(output, '/stubs');
   deleteFolderRecursive(stubsOutput);
 
