@@ -32,10 +32,7 @@ Params:
 
 - `--stubs` will use stubs client. Stubs will be copied from '/root/stubs` directory
 
-The folder `src/app/api` (or your custom folder) will contain the following
-structure:
 
-```
 ## Configuration file
 
 ```json
