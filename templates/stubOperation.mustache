@@ -2,13 +2,13 @@
 {{{operationComments}}}
   {{operationName}}({{#operationParamsClass
   }}params: {{serviceClass}}.{{operationParamsClass}}{{/operationParamsClass}}{{^operationParamsClass
-  }}{{#operationParameters}}{{paramName}}{{^paramRequired}}?{{/paramRequired}}: {{paramType
+  }}{{#operationParameters}}{{paramVar}}{{^paramRequired}}?{{/paramRequired}}: {{paramType
   }}{{^paramIsLast}},
     {{/paramIsLast}}{{/operationParameters}}{{/operationParamsClass
     }}): {{#operationIsVoid}}{{operationResultType}}{{/operationIsVoid}}{{^operationIsVoid}}Observable <{{operationResultType}}>{{/operationIsVoid}} {
       {{^operationIsVoid}}
       let responseKey = 'default';
-      {{^operationParamsClass}}let customKey = {{#operationParameters}}{{paramName}}{{^paramIsLast}}+'_'+{{/paramIsLast}}{{/operationParameters}}{{^operationParameters}}''{{/operationParameters}};
+      {{^operationParamsClass}}let customKey = {{#operationParameters}}{{paramVar}}{{^paramIsLast}}+'_'+{{/paramIsLast}}{{/operationParameters}}{{^operationParameters}}''{{/operationParameters}};
 
       if (customKey !== '' && {{operationName}}Stub[customKey]) {
         responseKey = customKey;
