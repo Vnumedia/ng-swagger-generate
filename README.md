@@ -17,9 +17,17 @@ npm install ng-swagger-generate --save-dev
 
 Configure `ng-swagger-generate.json` (see _Configuration file_)
 
+Run to generate HTTP client
 ```
 node_modules/.bin/ng-swagger-generate
 ```
+OR
+
+Run to generate Stubs client
+```
+node_modules/.bin/ng-swagger-generate --stubs
+```
+
 Params:
 
 - `--stubs` will use stubs client. Stubs will be copied from '/root/stubs` directory
