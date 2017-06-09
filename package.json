@@ -1,6 +1,6 @@
 {
-  "name": "ng-swagger-generate-stub",
-  "version": "0.5.1",
+  "name": "ng-swagger-generate",
+  "version": "0.6.1",
   "license": "MIT",
   "author": "Vnumedia",
   "description": "A Swagger 2.0 codegen for Angular 2+",
@@ -12,12 +12,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Vnumedia/ng-swagger-generate-stuberate-stub"
+    "url": "git+https://github.com/Vnumedia/ng-swagger-generate"
   },
   "dependencies": {
     "mustache": "^2.0.0"
   },
   "bin": {
-    "ng-swagger-generate-stub": "./ng-swagger-generate-stub"
+    "ng-swagger-generate": "./ng-swagger-generate"
   }
 }

@@ -2,7 +2,7 @@
 
 'use strict';
 
-const CONFIG = 'ng-swagger-generate-stub.json';
+const CONFIG = 'ng-swagger-generate.json';
 const fs = require('fs')
 
 var options = null;
@@ -26,7 +26,7 @@ if (options.stubs === undefined) {
   options.stubs = false;
 }
 
-var ngSwaggerGen = require("./ng-swagger-generate-stub.js");
+var ngSwaggerGen = require("./ng-swagger-generate.js");
 for (var i in options.sources) {
   options.swagger = options.sources[i];
   ngSwaggerGen(options);
